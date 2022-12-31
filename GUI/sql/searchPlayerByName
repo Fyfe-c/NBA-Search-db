@@ -1,0 +1,5 @@
+select Player.player_name as Name, Player.season as Season, TeamProperty.team_name as Team, Coach.coach_name as Coach
+from Player left join TeamProperty on Player.team_id = TeamProperty.team_id
+left join Coach on Coach.coach_id = Player.coach_id
+where Player.player_name like '%james%'
+order by Player.player_name ASC;

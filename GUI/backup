@@ -1,0 +1,189 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class mainPage implements ActionListener {
+    private dataBase dataBase;
+    private ImageIcon logo = new ImageIcon("logo.png");
+    private JButton button = new JButton();
+    private JFrame main = new JFrame();
+    private JFrame menuFrame;
+    private JPanel mainPanel= new JPanel();
+
+    private JScrollPane scroll;
+    //menubar
+    private JMenuBar  menuBar= new JMenuBar();
+    //menu selection
+    private JMenu fileMenu = new JMenu("File");
+    private JMenu helpMenu = new JMenu("Help");
+    private JMenu aboutMenu = new JMenu("About");
+    //menu items
+    private JMenuItem team;
+    private JMenuItem description;
+    private JMenuItem exit;
+    private JMenuItem contact;
+
+    //main page components
+    private JPanel pSearchPlayer;
+    private JTextField firstNameBox;
+    private JTextField lastNameBox;
+    private JButton bSearchPlayer;
+
+    private JPanel pSearchTeam;
+    private JTextField teamNameBox;
+    private JButton bSearchTeam;
+
+
+
+//    public mainPage(dataBase d){
+      public mainPage(){
+//        this.dataBase = d;
+        main.setTitle("NBA");
+        main.setSize(800,800);
+        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//exit window
+        main.setResizable(false);
+        main.setIconImage(logo.getImage());//set frame icon
+        main.setLayout(new BorderLayout());
+        main.getContentPane().setBackground(new Color(255,255,255));
+
+
+        //set mainPanel;
+        mainPanel.setLayout(new GridLayout(10,1,1,1));
+        mainPanel.setPreferredSize(new Dimension(800,800));
+//        scroll = new JScrollPane(mainPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+//        scroll.setBounds(50,30,300,50);
+//        scroll.setPreferredSize(new Dimension(200,200));
+//        mainPanel.add(scroll);
+        //add menu bar
+        menuBar.add(fileMenu);
+        menuBar.add(helpMenu);
+        menuBar.add(aboutMenu);
+        main.setJMenuBar(menuBar);
+
+        //add menu bar items
+        team = new JMenuItem("Members");
+        team.addActionListener(this);
+        aboutMenu.add(team);
+        description = new JMenuItem("Description");
+        description.addActionListener(this);
+        aboutMenu.add(description);
+        exit = new JMenuItem("Exit");
+        exit.addActionListener(this);
+        fileMenu.add(exit);
+        contact = new JMenuItem("Customer Service");
+        contact.addActionListener(this);
+        helpMenu.add(contact);
+
+        //add main page component
+        //add search player
+        JLabel lable1 = new JLabel("Search Player");
+        pSearchPlayer = new JPanel();
+        pSearchPlayer.setLayout(new GridBagLayout());
+        pSearchPlayer.setBounds(0,0,800,200);
+        firstNameBox = new JTextField("First Name:");
+        lastNameBox = new JTextField("Last Name:");
+        firstNameBox.setPreferredSize(new Dimension(250,40));
+        lastNameBox.setPreferredSize(new Dimension(250,40));
+        bSearchPlayer = new JButton("Submit");
+        pSearchPlayer.add(lable1);
+        pSearchPlayer.add(firstNameBox);
+        pSearchPlayer.add(lastNameBox);
+        pSearchPlayer.add(bSearchPlayer);
+
+        pSearchPlayer.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+
+
+        //add search team
+        JLabel label2 = new JLabel("Search Team");
+        pSearchTeam = new JPanel();
+        pSearchTeam.setLayout(new GridBagLayout());
+        pSearchTeam.setBounds(0,200,800,200);
+        teamNameBox = new JTextField("Enter a Team Name:");
+        teamNameBox.setPreferredSize(new Dimension(250,40));
+        bSearchTeam = new JButton("Submit");
+        pSearchTeam.add(label2);
+        pSearchTeam.add(teamNameBox);
+        pSearchTeam.add(bSearchTeam);
+        pSearchTeam.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+
+        mainPanel.add(pSearchPlayer);
+        mainPanel.add(pSearchTeam);
+
+        main.add(mainPanel,BorderLayout.CENTER);
+        main.pack();
+        main.setVisible(true);
+
+    }
+
+
+
+    public void searchTeam(){
+
+    }
+
+    public void searchPlayer(){
+
+    }
+
+    public void searchPerformance(){
+
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String text = null, title = null;
+        //check menu bar action
+        if(e.getSource() == team){//show result of Team in About menu
+            text = "<html>Xin Nie\t7640563<br/>Wanqi Lin\t7908738<br/>Fengfan Bian\t7924160</html>";
+            title = "Team Members";
+            createPage(title,text);
+        }else if(e.getSource() == description){//show description in About menu
+            title = "Description";
+            text = "<html>This database contains the match data of 2019 season NBA games. The dataset includes daily match results, team performance, player performance, daily team ranking, list of teams, team staff, and players.</html>";
+            createPage(title, text);
+        }else if(e.getSource() == contact){//show contact in help menu
+            title = "Customer Service";
+            text = "<html>24/7 Hotline:<br/> Xin Nie 204-290-1236</html>";
+            createPage(title, text);
+        }else if(e.getSource() == exit){//exit in file mneu
+            System.exit(0);
+        }
+        //check button action
+        else if( e.getSource() == bSearchPlayer){
+            //search player
+            String first = firstNameBox.getText();
+            String last = lastNameBox.getText();
+
+        }else if(e.getSource() == bSearchTeam){
+            //search team
+            String teamName = teamNameBox.getText();
+        }
+    }
+
+    /**
+     * This method create the window for any functions that need a new window to display.
+     * @param title window title
+     * @param text  text in the window
+     */
+    private void createPage(String title, String text){
+        JLabel content = null;
+        menuFrame = new JFrame();
+        menuFrame.setTitle(title);
+        menuFrame.setTitle(title);
+        menuFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        menuFrame.getContentPane().setBackground(new Color(255, 255, 255));
+        menuFrame.setSize(500,500);
+        if(text != null){
+            content = new JLabel();
+            content.setIcon(logo);
+            content.setText(text);
+            content.setFont(new Font("Serif",Font.PLAIN,22));
+            content.setVerticalTextPosition(JLabel.CENTER);
+//            content.setHorizontalTextPosition(JLabel.CENTER);
+            menuFrame.add(content);
+            menuFrame.setVisible(true);
+        }
+    }
+}
