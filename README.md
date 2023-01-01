@@ -1,4 +1,4 @@
-Our program can run in Linux lab with MakeFile. You can use “make run” to run, “make clean” to clear .class file.
+Our program can run in Linux, or use visual Studio code app . You can use “make run” to run, “make clean” to clear .class file.
 
 Before run the program：
     Update your username and password in auth.cfg
