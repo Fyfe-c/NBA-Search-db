@@ -40,7 +40,10 @@ Explaination Of Query:
             shooting 3 points).
 
 MADE BY 
+    
     - Fengfan Bian
+    
     - Xin Nie
+    
     - Wanqi Li
     
