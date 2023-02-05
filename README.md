@@ -38,3 +38,9 @@ Explaination Of Query:
         3, Top 15 Team by hit rate(2-point or 3 point).
         4, The advantage of different position on the court in selected field and selected season(such as which position on the courst is good at
             shooting 3 points).
+
+MADE BY 
+    - Fengfan Bian
+    - Xin Nie
+    - Wanqi Li
+    
